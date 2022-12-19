@@ -5,6 +5,7 @@ import threading
 import random
 import re
 import time
+import serial
 
 app = Flask(__name__)
 turbo = Turbo(app)
@@ -23,7 +24,32 @@ def update_load():
 def index():
     return render_template('index.html')
 
+data1 = "No data"
+data2 = "No data"
+data3 = "No data"
+data4 = "No data"
+data5 = "No data"
+
 @app.context_processor
 def inject_load():
-    load = [int(random.random() * 100) / 100 for _ in range(3)]
-    return {'load1': load[0], 'load5': load[1], 'load15': load[2]}
+    com = serial.Serial("/dev/serial0", 115200)
+    data = str(com.readline())
+    splitdata = data.split("(")[1]
+    data1temp = splitdata.split(",")[0]
+    data2temp = splitdata.split(",")[1]
+    data3temp = splitdata.split(",")[2]
+    data4temp = splitdata.split(",")[3]
+    data5temp = splitdata.split(",")[4].split(")")[0]
+
+    if data1temp != "nan":
+        data1 = data1temp
+    if data2temp != "nan":
+        data2 = data2temp
+    if data3temp != "nan":
+        data3 = data3temp
+    if data4temp != "nan":
+        data4 = data4temp
+    if data5temp != "nan":
+        data5 = data5temp
+
+    return {'data1': data1, 'data2': data2, 'data3': data3, 'data4': data4, 'data5': data5}
