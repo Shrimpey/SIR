@@ -32,8 +32,12 @@ data5 = "No data"
 
 @app.context_processor
 def inject_load():
-    com = serial.Serial("/dev/serial0", 115200)
-    data = str(com.readline())
+    #com = serial.Serial("/dev/serial0", 115200)
+    #data = str(com.readline())
+    data = "(401.5322,5.4121,500.4322,25.12,99.55)"
+
+    # Switch above commented lines to work with RPi instead of mockup data
+
     splitdata = data.split("(")[1]
     data1temp = splitdata.split(",")[0]
     data2temp = splitdata.split(",")[1]

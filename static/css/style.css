@@ -1,0 +1,35 @@
+.main-container {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+.fixer-container {
+  float: left;
+  position: relative;
+  left: -50%;
+
+  width: 500px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+  background: rgba(172,199,165,0.2);
+  border-radius: 25px;
+
+}
+.data th {
+  padding: 6px;
+  text-align: center;
+}
+
+.data td{
+  padding: 6px;
+  text-align: center;
+  background: rgba(192,219,185,1.0);
+  border-radius: 25px;
+}
+
+.text-container{
+  position: relative;
+  left: -50%;
+  text-align: center;
+}
